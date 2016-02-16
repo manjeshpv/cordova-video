@@ -6,6 +6,11 @@ function init() {
 		console.log("Take video");
 		navigator.device.capture.captureVideo(captureSuccess, captureError, {limit: 1});
 	}, false);
+
+	document.querySelector("#openVideo").addEventListener("touchend", function() {
+		console.log("open video",localStorage.videoPath);
+		window.open(localStorage.videoPath, '_system');
+	}, false);
 	
 }
 
@@ -19,5 +24,6 @@ function captureSuccess(s) {
 	var v = "<video controls='controls'>";
 	v += "<source src='" + s[0].fullPath + "' type='video/mp4'>";
 	v += "</video>";
+	localStorage.videoPath = s[0].fullPath;
 	document.querySelector("#videoArea").innerHTML = v;
 }
