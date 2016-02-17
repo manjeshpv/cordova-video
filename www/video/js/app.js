@@ -9,7 +9,12 @@ function init() {
 
 	document.querySelector("#openVideo").addEventListener("touchend", function() {
 		console.log("open video",localStorage.videoPath);
-		window.open(localStorage.videoPath, '_system');
+		if (device.platform == "iOS") {
+			window.open(localStorage.videoPath, '_blank', 'location=yes');
+		} else {
+			window.open(localStorage.videoPath, '_system');
+		}
+		
 	}, false);
 	
 }
